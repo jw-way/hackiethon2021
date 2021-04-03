@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-
-
-
     <head>
         <title>Sentral 2 - Home</title>
         
@@ -11,76 +8,14 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <link rel="stylesheet" href="static/mainstyle.css">
         <!--     Fonts and icons     -->
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         <!-- Material Kit CSS -->
         <link href="assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
         
-        <!-- <link rel="icon" href="static/tabicon"> -->
+        <link rel="stylesheet" href="static/mainstyle.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-        <style>
-            .sidebar {
-                height: 100%;
-                width: 18%;
-                background-color: #111;
-                padding: 20px;
-            }
-            .content {
-                margin-left: 18%;
-                height: 100%;
-                padding: 20px;
-                background-color: rgb(255, 255, 255);
-            }
-
-            .logo img
-            {
-                width: 90%;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .cards {
-                align-self: center;
-                overflow: inherit;
-                white-space: normal;
-            }
-            .subject-card
-            {
-                width: fit-content;
-                min-width: 20%;
-                max-width: 32%;
-                padding-left: 10px;
-                padding-right: 10px;
-                padding-top: 0px;
-                padding-top: 0px;
-            }
-            
-            .fit
-            {
-                width: 100%;
-            }
-            .sidebar {
-                background-image: url(https://scontent.fmel7-1.fna.fbcdn.net/v/t1.15752-9/168192517_6223073897706471_493773641137586547_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=ae9488&_nc_ohc=uulocg1nszUAX-BThTu&_nc_ht=scontent.fmel7-1.fna&oh=6cd72e3aaa756ecc26219067f0d48fae&oe=608E36E5);
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
-
-            .btn.btn-default.btn-link {
-                background-color: white;
-                color: black;
-            }
-            .btn.btn-default.btn-link:hover {
-                background-color: #bbbbbb;
-                color: white;
-}
-
-
-
-        </style>
     </head>
 
 
@@ -186,30 +121,76 @@
 
             <!-- browse all subjects, maybe i could make this into an alphabetically sorted system? or make a search feature? -->
             <div class="all-subjects">
+                <h3>All Subjects</h3>
 
-                <h3>All Subjects (Press Mathematics for the hyperlink to the other WIP page)</h3>
-
+                <form class="search-box" onkeyup=
+                "
+                let query = document.getElementById('search-input').value.toLowerCase();
+                let newHTML = '';
+                let baseHTML = String.raw
+                `
                 <h4>Year 9</h4>
-                <a href="#"><button class="btn btn-success btn-lg">Year 9 English</button></a>
-                <a href="#"><button class="btn btn-success btn-lg">Year 9 Mathematics</button></a>
-                <a href="#"><button class="btn btn-success btn-lg">Year 9 Science</button></a>
-                <a href="#"><button class="btn btn-success btn-lg">Year 9 History</button></a>
-                <a href="#"><button class="btn btn-success btn-lg">Year 9 Geography</button></a>
-                <a href="#"><button class="btn btn-success btn-lg">Year 9 Language</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 English</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Mathematics</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Science</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 History</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Geography</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Language</button></a>
                 <h4>Year 9 Elective</h4>
-                <a href="#"><button class="btn btn-success btn-lg">Year 9 Digital Technologies</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Digital Technologies</button></a>
 
                 <h4>Year 10</h4>
-                <a href="#"><button class="btn btn-success btn-lg">Year 10 English</button></a>
-                <a href="#"><button class="btn btn-success btn-lg">Year 10 Mathematics</button></a>
-                <a href="#"><button class="btn btn-success btn-lg">Year 10 Science</button></a>
-                <a href="#"><button class="btn btn-success btn-lg">Year 10 History</button></a>
-                <a href="#"><button class="btn btn-success btn-lg">Year 10 Geography</button></a>
-                <a href="#"><button class="btn btn-success btn-lg">Year 10 Language</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 English</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Mathematics</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Science</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 History</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Geography</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Language</button></a>
                 <h4>Year 10 Elective</h4>
-                <a href="#"><button class="btn btn-success btn-lg">Year 10 Algorithmics</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Algorithmics</button></a>
+                `
+                let e = document.getElementById('subjects-html');
+                if (baseHTML === '')
+                    baseHTML = new String(e.innerHTML);
 
+                baseHTML.split(/\r?\n/).forEach(element => {
+                    let str = element.trim();
+                    if (!str.includes('btn btn-success btn-lg') || str.toLowerCase().includes(query.trim().toLowerCase()))
+                    {
+                        newHTML += str + '\n';
+                    }
+                });
+                console.log(baseHTML);
+                e.innerHTML = newHTML;
+                "
+                >
+                    <input id="search-input" type="text" placeholder="Search..." name="search">
+                </form>
+                <p></p>
+
+                <div id="subjects-html">
+                    <h4>Year 9</h4>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 English</button></a>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 Mathematics</button></a>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 Science</button></a>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 History</button></a>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 Geography</button></a>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 Language</button></a>
+                    <h4>Year 9 Elective</h4>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 Digital Technologies</button></a>
+    
+                    <h4>Year 10</h4>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 English</button></a>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 Mathematics</button></a>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 Science</button></a>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 History</button></a>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 Geography</button></a>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 Language</button></a>
+                    <h4>Year 10 Elective</h4>
+                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 Algorithmics</button></a>
+                </div>
             </div>
+
         </div>
 
     </body>
