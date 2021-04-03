@@ -1,4 +1,48 @@
 body {
-    text-align: center; 
+    text-align: left; 
     font-family: Arial, Helvetica, sans-serif;
+    margin: 24px
+}
+
+h2 {
+    font-size: 4em;
+    margin-bottom: 16px;
+}
+
+.cards {
+    border: 4px solid black;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.subcard {
+    display: inline-block;
+    min-width: 160px;
+    width: fit-content;
+    text-align: center;
+    margin: 12px;
+    padding: 6px 12px 6px 12px;
+    border: 4px solid black;
+    text-decoration: none;
+    color: black;
+}
+
+.subcard h3 {
+    font-size: 2em;
+    margin: 6px 12px 12px 12px;
+}
+
+.subcard img {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    text-align: center;
+}
+
+.subcard .tag p {
+    border: 2px solid black;
+    padding: 4px 8px 4px 8px;
+    margin: 4px;
+    width: fit-content;
+    float: left;
 }
