@@ -58,11 +58,45 @@
                 console.log(baseHTML);
                 e.innerHTML = newHTML;
             }
+
+            function loadPostSection()
+            {
+                let postSection = document.getElementById('post-html');
+                postSection.innerHTML = String.raw
+                `
+                <button class="btn btn-danger right-align" onclick="unloadPostSection()"><i class="material-icons">close</i></button>
+                <input class="fit post-title-box" id="post-title-input" type="text" placeholder="Title..." name="post-title">
+                <p></p>
+                <textarea class="fit post-body-box" id="post-body-input" type="text" placeholder="Text..." name="post-body" rows="15"></textarea>
+                
+                <button class="btn btn-info" onclick=""><i class="material-icons">image</i> Add Image</button>
+                <button class="btn btn-primary right-align" onclick="postPost()"><i class="material-icons">add</i> Post</button>
+                `
+            }
+            function unloadPostSection()
+            {
+                let postSection = document.getElementById('post-html');
+                postSection.innerHTML = String.raw
+                `
+                <button class="btn btn-primary" onclick="loadPostSection()"><i class="material-icons">add</i> New Post</button>
+                `
+            }
+            function postPost()
+            {
+                let postSection = document.getElementById('post-html');
+                postSection.innerHTML = String.raw
+                `
+                <button class="btn btn-primary" onclick="loadPostSection()"><i class="material-icons">add</i> New Post</button>
+                <br>
+                <button class="btn btn-success" style="width: 95%">Question has been posted!</button>
+                <button class="btn btn-info" style="width: 2%" onclick="unloadPostSection()"><i class="material-icons">close</i></button>
+                `
+            }
         </script>
     </head>
 
 
-    <body onload="loadSubjects()">
+    <body onload="loadSubjects(); unloadPostSection()">
         <div class="sidebar">
             <div class="logo"><img src="static/logo.png"></div>
             <p></p>
@@ -80,85 +114,90 @@
 
                 <h3>My Subjects</h3>
 
-                <div class="cards">
-                    <div class="row">
+                <div class="cards"><div class="row">
 
-                        <div class="subject-card">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit">
-                                        <h3>English Language</h3>
-                                    </button></a></h4>
-                                    <p class="category">
-                                        Tags:
-                                        <a href="#"><button class="btn btn-info btn-sm">English</button></a>
-                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                                    </p>
-                                </div>
+                    <div class="subject-card">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit">
+                                    <h3>English Language</h3>
+                                </button></a></h4>
+                                <p class="category">
+                                    Tags:
+                                    <a href="#"><button class="btn btn-info btn-sm">English</button></a>
+                                    <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                </p>
                             </div>
                         </div>
-
-                        <div class="subject-card">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit">
-                                        <h3>Mathematical Methods</h3>
-                                    </button></a></h4>
-                                    <p class="category">
-                                        Tags:
-                                        <a href="#"><button class="btn btn-info btn-sm">Mathematics</button></a>
-                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="subject-card">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit">
-                                        <h3>Specialist Mathematics</h3>
-                                    </button></a></h4>
-                                    <p class="category">
-                                        Tags:
-                                        <a href="#"><button class="btn btn-info btn-sm">Mathematics</button></a>
-                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="subject-card">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit fit">
-                                        <h3>Physics</h3>
-                                    </button></a></h4>
-                                    <p class="category">
-                                        Tags:
-                                        <a href="#"><button class="btn btn-info btn-sm">Science</button></a>
-                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="subject-card">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit">
-                                        <h3>Algorithmics</h3>
-                                    </button></a></h4>
-                                    <p class="category">
-                                        Tags:
-                                        <a href="#"><button class="btn btn-info btn-sm">Computer Science</button></a>
-                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
                     </div>
+
+                    <div class="subject-card">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit">
+                                    <h3>Mathematical Methods</h3>
+                                </button></a></h4>
+                                <p class="category">
+                                    Tags:
+                                    <a href="#"><button class="btn btn-info btn-sm">Mathematics</button></a>
+                                    <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit">
+                                    <h3>Specialist Mathematics</h3>
+                                </button></a></h4>
+                                <p class="category">
+                                    Tags:
+                                    <a href="#"><button class="btn btn-info btn-sm">Mathematics</button></a>
+                                    <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit fit">
+                                    <h3>Physics</h3>
+                                </button></a></h4>
+                                <p class="category">
+                                    Tags:
+                                    <a href="#"><button class="btn btn-info btn-sm">Science</button></a>
+                                    <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit">
+                                    <h3>Algorithmics</h3>
+                                </button></a></h4>
+                                <p class="category">
+                                    Tags:
+                                    <a href="#"><button class="btn btn-info btn-sm">Computer Science</button></a>
+                                    <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                        
+                </div></div>
+                
+                <div class="post">
+                    
+                    <div id="post-html">
+                    </div>
+
                 </div>
 
             </div>
@@ -168,7 +207,7 @@
                 <h3>All Subjects</h3>
 
                 <form class="search-box" onkeyup="return loadSubjects()">
-                    <input id="search-input" type="text" placeholder="Search..." name="search">
+                    <input id="search-input" type="text" placeholder="Filter..." name="search">
                 </form>
                 <p></p>
 

@@ -35,11 +35,10 @@ body
     margin-right: auto;
 }
 .btn.btn-default.btn-link {
-    background-color: white;
-    color: black;
+    color: white;
 }
 .btn.btn-default.btn-link:hover {
-    background-color: #bbbbbb;
+    background-color: rgba(0, 0, 0, 0.65);
     color: white;
 }
 
@@ -77,23 +76,34 @@ h1,h2,h3,h4,h5,h6
 
 input[type=text]
 {
+    padding: 10px;
+}
+form.search-box input[type=text]
+{
     width: 25%;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
-}
-input[type=text]:focus
-{
-    width: 100%;
-}
-form.search-box input[type=text] {
-    padding: 10px;
     font-size: 17px;
     border: 1px solid grey;
     float: left;
     background: #f1f1f1;
 }
+form.search-box input[type=text]:focus
+{
+    width: 100%;
+}
 form.search-box::after {
     content: "";
     clear: both;
     display: table;
+}
+.post-body-box
+{
+    padding: 10px;
+    height: 35%;
+}
+.right-align
+{
+    float: right;
+    vertical-align: middle;
 }
