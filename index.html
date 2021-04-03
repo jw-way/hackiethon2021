@@ -4,7 +4,7 @@
 
 
     <head>
-        <title>Home</title>
+        <title>Sentral 2 - Home</title>
         
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -22,136 +22,176 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <style>
-            .center
-            {
-                text-align: center;
+            .sidebar {
+                height: 100%;
+                width: 18%;
+                background-color: #111;
+                padding: 20px;
             }
-            .button
+            .content {
+                margin-left: 18%;
+                height: 100%;
+                padding: 20px;
+                background-color: rgb(255, 255, 255);
+            }
+
+            .logo img
             {
-                width: 250px;
-                max-width: 100%;
-                padding: 15px;
+                width: 90%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .cards {
+                align-self: center;
+                overflow: inherit;
+                white-space: normal;
+            }
+            .subject-card
+            {
+                width: fit-content;
+                min-width: 20%;
+                max-width: 32%;
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-top: 0px;
+                padding-top: 0px;
+            }
+            
+            .fit
+            {
+                width: 100%;
             }
         </style>
     </head>
 
 
     <body>
+        <div class="sidebar">
+            <div class="logo"><img src="static/logo.png"></div>
+            <p></p>
+            <p><a href="#"><button class="btn btn-default btn-lg btn-link fit"><i class="material-icons">home</i> Home</button></a></p>
+            <p><a href="#"><button class="btn btn-default btn-lg btn-link fit"><i class="material-icons">search</i> Explore</button></a></p>
+            <p><a href="#"><button class="btn btn-default btn-lg btn-link fit"><i class="material-icons">help</i> Help</button></a></p>
+        </div>
 
-        <nav class="sidenav">
-            <img src="static/logo.png">
-            <a href="index.html">Home</a>
-            <a href="https://www.google.com">Google</a>
-            <a href="https://www.google.com">Google</a>
-        </nav>
+        <div class="content">
 
+            <h1>Sentral 2</h3>
 
-        <div class="main">
-
-
-            <!-- <h1>
-                because i am a terrible person who doesn't know how to apply templates (and the css seems really laggy as well) i just did a start page mock up. i'll keep on working on the raw html, and will probably apply the template when the time comes. cheers
-            </h1> -->
-
-
-            
-
-
-
-            <!-- all of the "favourited" subjects -->
             <div class="my-subjects">
 
-                <h2>My Subjects</h2>
+                <h3>My Subjects</h3>
 
                 <div class="cards">
                     <div class="row">
-                        <div class="col-md-3">
+
+                        <div class="subject-card">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title center"><a href=""><button class="btn btn-info btn-lg">
+                                    <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit">
                                         <h3>English Language</h3>
                                     </button></a></h4>
                                     <p class="category">
                                         Tags:
-                                        <a href=""><button class="btn btn-info btn-sm">English</button></a>
-                                        <a href=""><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                        <a href="#"><button class="btn btn-info btn-sm">English</button></a>
+                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                    <a href="https://www.google.com" class="subcard">
-                        <h3>English</h3>
-                        <div class="tag">
-                            <p>English Language</p>
-                            <p>Units 3/4</p>
+                        <div class="subject-card">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit">
+                                        <h3>Mathematical Methods</h3>
+                                    </button></a></h4>
+                                    <p class="category">
+                                        Tags:
+                                        <a href="#"><button class="btn btn-info btn-sm">Mathematics</button></a>
+                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                    </a>
-
-                    <a href="https://www.google.com" class="subcard">
-                        <h3>Mathematics</h3>
-                        <div class="tag">
-                            <p>Methods</p>
-                            <p>Units 3/4</p>
+                        
+                        <div class="subject-card">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit">
+                                        <h3>Specialist Mathematics</h3>
+                                    </button></a></h4>
+                                    <p class="category">
+                                        Tags:
+                                        <a href="#"><button class="btn btn-info btn-sm">Mathematics</button></a>
+                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                    </a>
-
-                    <a href="https://www.google.com" class="subcard">
-                        <h3>Mathematics</h3>
-                        <div class="tag">
-                            <p>Specialist</p>
-                            <p>Units 3/4</p>
+                        
+                        <div class="subject-card">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit fit">
+                                        <h3>Physics</h3>
+                                    </button></a></h4>
+                                    <p class="category">
+                                        Tags:
+                                        <a href="#"><button class="btn btn-info btn-sm">Science</button></a>
+                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                    </a>
-
-                    <a href="https://www.google.com" class="subcard">
-                        <h3>Physics</h3>
-                        <div class="tag">
-                            <p>Physics</p>
-                            <p>Units 3/4</p>
+                        
+                        <div class="subject-card">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"><a href="#"><button class="btn btn-warning btn-lg fit">
+                                        <h3>Algorithmics</h3>
+                                    </button></a></h4>
+                                    <p class="category">
+                                        Tags:
+                                        <a href="#"><button class="btn btn-info btn-sm">Computer Science</button></a>
+                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                    </a>
-
-                    <a href="https://www.google.com" class="subcard">
-                        <h3>Algorithmics</h3>
-                        <div class="tag">
-                            <p>Algorithmics</p>
-                            <p>Units 3/4</p>
-                        </div>
-                    </a>
-
+                        
+                    </div>
                 </div>
+
             </div>
 
             <!-- browse all subjects, maybe i could make this into an alphabetically sorted system? or make a search feature? -->
             <div class="all-subjects">
-                <h2>All Subjects (Press Mathematics for the hyperlink to the other WIP page)</h2>
-                <div class="cards">
-                    <p class="center">
-                        <a href=""><button class="btn btn-info btn-lg">English</button></a>
-                        <a href="thread.html"><button class="btn btn-info btn-lg">Mathematics</button></a>
-                        <a href=""><button class="btn btn-info btn-lg">Science</button></a>
-                        <a href=""><button class="btn btn-info btn-lg">History</button></a>
-                        <a href=""><button class="btn btn-info btn-lg">Geography</button></a>
-                        <a href=""><button class="btn btn-info btn-lg">Psychology</button></a>
-                        <a href=""><button class="btn btn-info btn-lg">weed</button></a>
-                        <a href=""><button class="btn btn-info btn-lg">weed</button></a>
-                    </p>
-                    <p class="center">
-                        <a href=""><button class="btn btn-info btn-lg">English</button></a>
-                        <a href="thread.html"><button class="btn btn-info btn-lg">Mathematics</button></a>
-                        <a href=""><button class="btn btn-info btn-lg">Science</button></a>
-                        <a href=""><button class="btn btn-info btn-lg">History</button></a>
-                        <a href=""><button class="btn btn-info btn-lg">Geography</button></a>
-                        <a href=""><button class="btn btn-info btn-lg">Psychology</button></a>
-                        <a href=""><button class="btn btn-info btn-lg">weed</button></a>
-                        <a href=""><button class="btn btn-info btn-lg">weed</button></a>
-                    </p>
-                </div>
+
+                <h3>All Subjects (Press Mathematics for the hyperlink to the other WIP page)</h3>
+
+                <h4>Year 9</h4>
+                <a href="#"><button class="btn btn-success btn-lg">Year 9 English</button></a>
+                <a href="#"><button class="btn btn-success btn-lg">Year 9 Mathematics</button></a>
+                <a href="#"><button class="btn btn-success btn-lg">Year 9 Science</button></a>
+                <a href="#"><button class="btn btn-success btn-lg">Year 9 History</button></a>
+                <a href="#"><button class="btn btn-success btn-lg">Year 9 Geography</button></a>
+                <a href="#"><button class="btn btn-success btn-lg">Year 9 Language</button></a>
+                <h4>Year 9 Elective</h4>
+                <a href="#"><button class="btn btn-success btn-lg">Year 9 Digital Technologies</button></a>
+
+                <h4>Year 10</h4>
+                <a href="#"><button class="btn btn-success btn-lg">Year 10 English</button></a>
+                <a href="#"><button class="btn btn-success btn-lg">Year 10 Mathematics</button></a>
+                <a href="#"><button class="btn btn-success btn-lg">Year 10 Science</button></a>
+                <a href="#"><button class="btn btn-success btn-lg">Year 10 History</button></a>
+                <a href="#"><button class="btn btn-success btn-lg">Year 10 Geography</button></a>
+                <a href="#"><button class="btn btn-success btn-lg">Year 10 Language</button></a>
+                <h4>Year 10 Elective</h4>
+                <a href="#"><button class="btn btn-success btn-lg">Year 10 Algorithmics</button></a>
+
             </div>
-
-
-
         </div>
 
     </body>
