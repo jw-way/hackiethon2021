@@ -16,21 +16,65 @@
         
         <link rel="stylesheet" href="static/mainstyle.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+        <script>
+            function loadSubjects()
+            {
+                let query = document.getElementById('search-input').value.toLowerCase();
+                let newHTML = '';
+                let baseHTML = String.raw
+                `
+                <h4>Year 9</h4>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 English</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Mathematics</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Science</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 History</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Geography</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Language</button></a>
+                <h4>Year 9 Elective</h4>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Digital Technologies</button></a>
+
+                <h4>Year 10</h4>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 English</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Mathematics</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Science</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 History</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Geography</button></a>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Language</button></a>
+                <h4>Year 10 Elective</h4>
+                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Algorithmics</button></a>
+                `
+                let e = document.getElementById('subjects-html');
+                if (baseHTML === '')
+                    baseHTML = new String(e.innerHTML);
+
+                baseHTML.split(/\r?\n/).forEach(element => {
+                    let str = element.trim();
+                    if (!str.includes('btn btn-success btn-lg') || str.toLowerCase().includes(query.trim().toLowerCase()))
+                    {
+                        newHTML += str + '\n';
+                    }
+                });
+                console.log(baseHTML);
+                e.innerHTML = newHTML;
+            }
+        </script>
     </head>
 
 
-    <body>
+    <body onload="loadSubjects()">
         <div class="sidebar">
             <div class="logo"><img src="static/logo.png"></div>
             <p></p>
-            <p><a href="#"><button class="btn btn-default btn-lg btn-link fit"><i class="material-icons">home</i> Home</button></a></p>
-            <p><a href="explore_page.html"><button class="btn btn-default btn-lg btn-link fit"><i class="material-icons">search</i> Explore</button></a></p>
-            <p><a href="#"><button class="btn btn-default btn-lg btn-link fit"><i class="material-icons">help</i> Help</button></a></p>
+            <p><a href="index.html"><button class="btn btn-default btn-lg btn-link fit"><i class="material-icons">home</i> Home</button></a></p>
+            <p><a href="explore.html"><button class="btn btn-default btn-lg btn-link fit"><i class="material-icons">search</i> Explore</button></a></p>
+            <p><a href="help.html"><button class="btn btn-default btn-lg btn-link fit"><i class="material-icons">help</i> Help</button></a></p>
         </div>
 
         <div class="content">
 
-            <h1>Sentral 2</h3>
+            <h1>Sentral 2</h1>
+            <br>
 
             <div class="my-subjects">
 
@@ -123,72 +167,15 @@
             <div class="all-subjects">
                 <h3>All Subjects</h3>
 
-                <form class="search-box" onkeyup=
-                "
-                let query = document.getElementById('search-input').value.toLowerCase();
-                let newHTML = '';
-                let baseHTML = String.raw
-                `
-                <h4>Year 9</h4>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 English</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Mathematics</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Science</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 History</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Geography</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Language</button></a>
-                <h4>Year 9 Elective</h4>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Digital Technologies</button></a>
-
-                <h4>Year 10</h4>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 English</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Mathematics</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Science</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 History</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Geography</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Language</button></a>
-                <h4>Year 10 Elective</h4>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Algorithmics</button></a>
-                `
-                let e = document.getElementById('subjects-html');
-                if (baseHTML === '')
-                    baseHTML = new String(e.innerHTML);
-
-                baseHTML.split(/\r?\n/).forEach(element => {
-                    let str = element.trim();
-                    if (!str.includes('btn btn-success btn-lg') || str.toLowerCase().includes(query.trim().toLowerCase()))
-                    {
-                        newHTML += str + '\n';
-                    }
-                });
-                console.log(baseHTML);
-                e.innerHTML = newHTML;
-                "
-                >
+                <form class="search-box" onkeyup="return loadSubjects()">
                     <input id="search-input" type="text" placeholder="Search..." name="search">
                 </form>
                 <p></p>
 
                 <div id="subjects-html">
-                    <h4>Year 9</h4>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 English</button></a>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 Mathematics</button></a>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 Science</button></a>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 History</button></a>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 Geography</button></a>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 Language</button></a>
-                    <h4>Year 9 Elective</h4>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 9 Digital Technologies</button></a>
-    
-                    <h4>Year 10</h4>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 English</button></a>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 Mathematics</button></a>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 Science</button></a>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 History</button></a>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 Geography</button></a>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 Language</button></a>
-                    <h4>Year 10 Elective</h4>
-                    <a href='#'><button class='btn btn-success btn-lg'>Year 10 Algorithmics</button></a>
                 </div>
+
+                <br>
             </div>
 
         </div>
