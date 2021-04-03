@@ -58,6 +58,16 @@
                 e.innerHTML = newHTML;
             }
 
+            /*
+            function loadImage(){
+                let image = document.createElement("input");
+                image.setAttribute("type","image");
+                
+                
+            }
+            Cant seem to be able to get the imageload() function to work :( 
+            */ 
+
             function loadPostSection()
             {
                 let postSection = document.getElementById('post-html');
@@ -68,7 +78,7 @@
                 <p></p>
                 <textarea class="fit post-body-box" id="post-body-input" type="text" placeholder="Text..." name="post-body" rows="15"></textarea>
                 
-                <button class="btn btn-info" onclick=""><i class="material-icons">image</i> Add Image</button>
+                <button class="btn btn-info" onclick="loadImage()"><i class="material-icons">image</i> Add Image</button>
                 <button class="btn btn-primary right-align" onclick="postPost()"><i class="material-icons">add</i> Post</button>
                 `
             }
