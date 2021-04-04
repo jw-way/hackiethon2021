@@ -93,6 +93,16 @@
                         else return -1;
                     });
                 }
+                else if (questionSort.type === 'popular')
+                {
+                    parsedData.sort((a, b) => {
+                        if (a.rating === b.rating)
+                            return 0;
+                        else if (a.rating > b.rating)
+                            return -1;
+                        else return 1;
+                    });
+                }
                 var cards = '';
                 parsedData.forEach(element => {
                     var tags = ''
@@ -128,7 +138,7 @@
     </head>
 
 
-    <body>
+    <body onload="searchForQuestions()">
         <div class="sidebar">
             <div class="logo"><img src="static/logo.png"></div>
             <p></p>
@@ -162,9 +172,8 @@
             <div id="tags-html">
             </div>
 
-            <button class="btn btn-secondary" onclick="searchForQuestions()">New</button>
-            <button class="btn btn-secondary">Trending</button>
-            <button class="btn btn-secondary">Most Popular</button>
+            <button class="btn btn-secondary" onclick="questionSort.type = 'new'; searchForQuestions();">New</button>
+            <button class="btn btn-secondary" onclick="questionSort.type = 'popular'; searchForQuestions();">Most Popular</button>
             
             <div class="cards"><div class="row" id="question-cards">
                 
