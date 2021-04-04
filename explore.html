@@ -175,7 +175,11 @@
                 </button>               
                 <script>
                 
-                if (document.location.search.replace(/^.*?\=/,'') !== null){
+                function getTag(){
+                    retun (document.location.search.replace(/^.*?\=/,''))
+                }
+
+                if (getTag()){
                     addTag(document.location.search.replace(/^.*?\=/,''));
                     updateTags();
                     searchForQuestions();
