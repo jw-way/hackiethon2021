@@ -17,6 +17,86 @@
         <!-- <link rel="icon" href="static/tabicon"> -->
         <link rel="stylesheet" href="static/mainstyle.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+            class tag
+            {
+                static tags = [];
+                static htmlBegin = String.raw
+                `
+                <button class="btn btn-warning btn-sm" onclick="
+                `;
+                static htmlCenter = String.raw
+                `
+                ">
+                `;
+                static htmlEnd = String.raw
+                `
+                &nbsp<i class="material-icons">close</i></button>
+                `;
+            }
+            class questionSort
+            {
+                static type = 'new';
+            }
+
+            function addTag(tagStr)
+            {
+                if (!tag.tags.includes(tagStr))
+                {
+                    tag.tags.push(tagStr);
+                    updateTags();
+                }
+            }
+            function removeTag(tagStr)
+            {
+                tag.tags = tag.tags.filter(item => item !== tagStr);
+                updateTags();
+            }
+            function updateTags()
+            {
+                let e = document.getElementById('tags-html');
+                e.innerHTML = '';
+                tag.tags.forEach(item => {
+                    e.innerHTML += tag.htmlBegin + `removeTag(\'${item}\')` + tag.htmlCenter + item + tag.htmlEnd; 
+                });
+            }
+            function searchForQuestions()
+            {
+                var xmlHttp = new XMLHttpRequest();
+                let tagConcat = tag.tags.join(';');
+                console.log(tagConcat === "");
+                if (tagConcat === "")
+                {
+                    xmlHttp.open("GET", "https://8c22ba59c936.ngrok.io/api/v1/questions?type=org");
+                }
+                else
+                {
+                    xmlHttp.open("GET", `https://8c22ba59c936.ngrok.io/api/v1/questions?type=org&tag=${tagConcat}`);
+                }
+                xmlHttp.send();
+                console.log(xmlHttp.responseText);
+
+                let testReturn = `[{"author":null,"date_time":"2021-04-03T10:00:00Z","id":1,"question_screenshot_id":null,"question_text":"Describe a scenario where Dijkstra's algorithm would be most suited for.","rating":10,"tags_list":"AL;12;Shortest-path algorithms","view_count":0},{"author":null,"date_time":"2021-04-03T10:00:00Z","id":2,"question_screenshot_id":null,"question_text":"How do roller coasters keep their passengers in their seat when they are upside-down on the loop?","rating":3,"tags_list":"PH;12;Circular motion","view_count":0},{"author":null,"date_time":"2021-04-04T10:00:00Z","id":8,"question_screenshot_id":"Test question 3","question_text":"Test question 3","rating":0,"tags_list":null,"view_count":0},{"author":"David Kong","date_time":"2021-04-04T10:00:00Z","id":9,"question_screenshot_id":null,"question_text":"How do I access the API in JS?","rating":0,"tags_list":null,"view_count":0}]`;
+
+                let parsedData = JSON.parse(testReturn);
+                console.log(parsedData);
+
+                if (questionSort.type === 'new')
+                {
+                    parsedData.sort((a, b) => {
+                        if (Date.parse(a) === Date.parse(b))
+                            return 0;
+                        else if (Date.parse(a) > Date.parse(b))
+                            return -1;
+                        else return 1;
+                    });
+                }
+                parsedData.forEach(element => {
+
+                });
+            }
+        </script>
     </head>
 
 
@@ -36,134 +116,82 @@
             <h1>Sentral 2 - Explore</h1>
             <br>
 
-            <form class="search-box" onkeyup="return loadSubjects()">
+            <form class="search-box" onsubmit="searchForQuestions()">
                 <input id="search-input" type="text" placeholder="Search..." name="search">
-                <br><br>
-                <button class="btn btn-primary"><i class="material-icons">add</i> Add Tag</button>
-                <button type="submit" class="btn btn-success btn-lg right-align"><i class="fa fa-search"></i></button>
             </form>
 
-            <div class="new">
+            <form onsubmit="let t = document.getElementById('tag-input').value; if (t !== '') addTag(t); return false;">
+                <button class="btn btn-primary">
+                    <i class="material-icons">add</i> 
+                    &nbspAdd Tag&nbsp&nbsp
+                </button>
+                <input style="padding: 4px;", id="tag-input", type="text" placeholder="Tag..." name="tag">
+                <button class="btn btn-success right-align" onclick="searchForQuestions()">
+                    <i class="material-icons">search</i>
+                </button>
+            </form>
 
-                <h3>New Questions</h3>
-                
-                <div class="cards"><div class="row">
-
-                    <div class="question-card"><div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title"><a href="#">Insert question here.</a></h3>
-                            <p class="category">
-                                <p></p>
-                                Subject:
-                                <a href="#"><button class="btn btn-warning btn-sm">English Language 3/4</button></a>
-                                <br>Tags:
-                                <a href="#"><button class="btn btn-info btn-sm">English</button></a>
-                                <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            Preview of question here fillertext whatever...
-                        </div>
-                    </div></div>
-
-                    <div class="question-card"><div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title"><a href="#">Insert question here.</a></h3>
-                            <p class="category">
-                                <p></p>
-                                Subject:
-                                <a href="#"><button class="btn btn-warning btn-sm">English Language 3/4</button></a>
-                                <br>Tags:
-                                <a href="#"><button class="btn btn-info btn-sm">English</button></a>
-                                <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            Preview of question here fillertext whatever...
-                        </div>
-                    </div></div>
-
-                    <div class="question-card"><div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title"><a href="#">Insert question here.</a></h3>
-                            <p class="category">
-                                <p></p>
-                                Subject:
-                                <a href="#"><button class="btn btn-warning btn-sm">English Language 3/4</button></a>
-                                <br>Tags:
-                                <a href="#"><button class="btn btn-info btn-sm">English</button></a>
-                                <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            Preview of question here fillertext whatever...
-                        </div>
-                    </div></div>
-                    
-                </div></div>
-
+            <div id="tags-html">
             </div>
+
+            <button class="btn btn-secondary">New</button>
+            <button class="btn btn-secondary">Trending</button>
+            <button class="btn btn-secondary">Most Popular</button>
             
-            <div class="trending">
+            <div class="cards"><div class="row">
 
-                <h3>Trending Questions</h3>
-
-                <div class="cards"><div class="row">
-
-                    <div class="question-card"><div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title"><a href="#">Insert question here.</a></h3>
-                            <p class="category">
-                                <p></p>
-                                Subject:
-                                <a href="#"><button class="btn btn-warning btn-sm">English Language 3/4</button></a>
-                                <br>Tags:
-                                <a href="#"><button class="btn btn-info btn-sm">English</button></a>
-                                <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            Preview of question here fillertext whatever...
-                        </div>
-                    </div></div>
-
-                    <div class="question-card"><div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title"><a href="#">Insert question here.</a></h3>
-                            <p class="category">
-                                <p></p>
-                                Subject:
-                                <a href="#"><button class="btn btn-warning btn-sm">English Language 3/4</button></a>
-                                <br>Tags:
-                                <a href="#"><button class="btn btn-info btn-sm">English</button></a>
-                                <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            Preview of question here fillertext whatever...
-                        </div>
-                    </div></div>
-
-                    <div class="question-card"><div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title"><a href="#">Insert question here.</a></h3>
-                            <p class="category">
-                                <p></p>
-                                Subject:
-                                <a href="#"><button class="btn btn-warning btn-sm">English Language 3/4</button></a>
-                                <br>Tags:
-                                <a href="#"><button class="btn btn-info btn-sm">English</button></a>
-                                <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            Preview of question here fillertext whatever...
-                        </div>
-                    </div></div>
-                    
+                <div class="question-card"><div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><a href="#">Insert question here.</a></h3>
+                        <p class="category">
+                            <p></p>
+                            Subject:
+                            <a href="#"><button class="btn btn-warning btn-sm">English Language 3/4</button></a>
+                            <br>Tags:
+                            <a href="#"><button class="btn btn-info btn-sm">English</button></a>
+                            <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        Preview of question here fillertext whatever...
+                    </div>
                 </div></div>
 
-            </div>
+                <div class="question-card"><div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><a href="#">Insert question here.</a></h3>
+                        <p class="category">
+                            <p></p>
+                            Subject:
+                            <a href="#"><button class="btn btn-warning btn-sm">English Language 3/4</button></a>
+                            <br>Tags:
+                            <a href="#"><button class="btn btn-info btn-sm">English</button></a>
+                            <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        Preview of question here fillertext whatever...
+                    </div>
+                </div></div>
+
+                <div class="question-card"><div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><a href="#">Insert question here.</a></h3>
+                        <p class="category">
+                            <p></p>
+                            Subject:
+                            <a href="#"><button class="btn btn-warning btn-sm">English Language 3/4</button></a>
+                            <br>Tags:
+                            <a href="#"><button class="btn btn-info btn-sm">English</button></a>
+                            <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        Preview of question here fillertext whatever...
+                    </div>
+                </div></div>
+                
+            </div></div>
 
         </div>
 
