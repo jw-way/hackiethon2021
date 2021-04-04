@@ -34,6 +34,14 @@
                 &nbsp<i class="material-icons">close</i></button>
                 `;
             }
+
+            function createQString(elementID,topicName){
+                let button = document.getElementById(elementID);
+                button.addEventListener("click", function(){
+                window.document.location = "explore.html" + "?SubjectTag=" + topicName;
+                });
+            } 
+
             function loadSubjects()
             {
                 let query = document.getElementById('search-input').value.toLowerCase();
@@ -198,18 +206,14 @@
                     body: String.raw
                     `
                     {
-                        "type": "que",
-                        "date_time": "2021-04-04T10:00:00Z",
-                        "text_content": "test q 3",
-                        "media_id": "test qweq 3",
-                        "original_question_id": 1
-                    }
-                    `
-                    /*"author": "${document.getElementById('post-author-input').value}",
-                        "media_id": "this is a stupid undocumented required field, even with text_content",
+                        "type": "org",
+                        "author": "${document.getElementById('post-author-input').value}",
                         "text_content": "${document.getElementById('post-body-input').value}",
                         "date_time": "${new Date(Date.now()).toISOString()}",
                         "tags_list": "${tag.tags.join(';')}"
+                    }
+                    `
+                    /*
                     */
                 });
                 console.log(response.json());
@@ -222,6 +226,9 @@
                 <button class="btn btn-success fit" onclick="unloadPostSection()">Question has been posted!</button>
                 `
             }
+
+
+                                            
         </script>
     </head>
 
