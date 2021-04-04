@@ -215,6 +215,14 @@
                 <button class="btn btn-success fit" onclick="unloadPostSection()">Question has been posted!</button>
                 `
             }
+
+            function createQString(elementID,topicName){
+                let button = document.getElementById(elementID);
+                button.addEventListener("click", function(){
+                window.document.location = "explore.html" + "?SubjectTag=" + topicName;
+                });
+            } 
+                                            
         </script>
     </head>
 
@@ -234,8 +242,14 @@
 
             <h1><b>Central</b></h1>
             <hr>
+
+            <div class="post">
+                <div id="post-html"></div>
+            </div>
             <br>
+
             
+
             <div class="my-subjects">
 
                 <h2>My Subjects</h2>
@@ -254,11 +268,13 @@
                                     <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
                                 </p>
                                 <script> 
-                                    let EngLanB = document.getElementById("EngLanB")
-                                    //var tag = "mathematical methods"
+                                   createQString("EngLanB","english language")
+                                
+                                   /*let EngLanB = document.getElementById("EngLanB")
+                                    //var tag = "mathematical met   hods"
                                     EngLanB.addEventListener("click", function(){
                                     window.document.location = "explore.html" + "?SubjectTag=" + "english langauge";
-                                    });
+                                    });*/
                                     </script>
                             </div>
                         </div>
@@ -276,11 +292,9 @@
                                     <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
                                 </p>
                                 <script> 
-                                    let MethB = document.getElementById("MethB")
-                                    //var tag = "mathematical methods"
-                                    MethB.addEventListener("click", function(){
-                                    window.document.location = "explore.html" + "?SubjectTag=" + "mathematical methods";
-                                    });
+
+                                createQString("MethB","mathematical methods")
+
                                     </script>
                             </div>
                         </div>
@@ -298,11 +312,9 @@
                                     <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
                                 </p>
                                 <script> 
-                                    let SpeshB = document.getElementById("SpeshB")
-                                    //var tag = "Specialist Math"
-                                    SpeshB.addEventListener("click", function(){
-                                    window.document.location = "explore.html" + "?SubjectTag=" + "Specialist Math";
-                                    });
+
+                                    createQString("SpeshB","specialist mathematics")
+
                                     </script>
                             </div>
                         </div>
@@ -320,11 +332,9 @@
                                     <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
                                 </p>
                                 <script> 
-                                    let PhysB = document.getElementById("PhysB")
-                                    //var tag = "physics"
-                                    PhysB.addEventListener("click", function(){
-                                    window.document.location = "explore.html" + "?SubjectTag=" + "physics";
-                                    });
+
+                                    createQString("PhysB","physics")
+
                                     </script>
                             </div>
                         </div>
@@ -342,11 +352,9 @@
                                     <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
                                 </p>
                                 <script> 
-                                let AlgoB = document.getElementById("AlgoB")
-                                //var tag = "algorithmics"
-                                AlgoB.addEventListener("click", function(){
-                                window.document.location = "explore.html" + "?SubjectTag=" + "algorithmics";
-                                });
+
+                                    createQString("AlgoB","algorithmics")
+
                                 </script>
                                 
                             </div>
@@ -354,9 +362,7 @@
                     </div>
                 </div></div>
                 
-            <div class="post">
-                <div id="post-html"></div>
-            </div>
+            
 
 
 
