@@ -61,6 +61,8 @@
                     e.innerHTML += tag.htmlBegin + `removeTag(\'${item}\')` + tag.htmlCenter + item + tag.htmlEnd; 
                 });
             }
+
+
             function searchForQuestions()
             {
                 var xmlhttp;
@@ -169,9 +171,19 @@
                     &nbspAdd Tag&nbsp&nbsp
                 </button>
                 <input style="padding: 4px;", id="tag-input", type="text" placeholder="Tag..." name="tag">
-                <button class="btn btn-success right-align" onclick="searchForQuestions()">
+                <button class="btn btn-success right-align" id="id-search" onclick="searchForQuestions()">
                     <i class="material-icons">search</i>
-                </button>
+                </button>               
+                <script>
+                
+                if (document.location.search.replace(/^.*?\=/,'') !== null){
+                    addTag(document.location.search.replace(/^.*?\=/,''));
+                    updateTags();
+                    searchForQuestions();
+                }
+
+                </script>
+
             </form>
 
             <div id="tags-html">
