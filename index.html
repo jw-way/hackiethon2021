@@ -183,12 +183,14 @@
             }
             async function postPost()
             {
-                var tagsString = "[ ";
+                var tagsString = "[   ";
                 tag.tags.forEach(item => {
                     tagsString += `\"${item}\", `;
                 });
                 tagsString = tagsString.substr(0, tagsString.length - 2);
                 tagsString += " ]";
+
+                console.log(tagsString);
 
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "https://sentral2database--dragonfan.repl.co", false);
@@ -196,12 +198,16 @@
                 xhr.send(String.raw
                 `
                 {
-                    "author": "${document.getElementById('post-author-input').value}",
-                    "subject": "${document.getElementById('post-subject-input').value}",
-                    "tags": ${tagsString},
-                    "content": "${document.getElementById('post-body-input').value}",
-                    "post_time": "${new Date(Date.now()).toISOString()}",
-                    "upvotes": 0
+                    "type": "add",
+                    "data":
+                    {
+                        "author": "${document.getElementById('post-author-input').value}",
+                        "subject": "${document.getElementById('post-subject-input').value}",
+                        "tags": ${tagsString},
+                        "content": "${document.getElementById('post-body-input').value}",
+                        "post_time": "${new Date(Date.now()).toISOString()}",
+                        "upvotes": 0
+                    }
                 }
                 `);
                 console.log(xhr.responseText);

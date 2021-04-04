@@ -89,16 +89,19 @@
 
                         cards += String.raw
                         `
-                        <div class="question-card"><div class="card">
+                        <div class="question-card"><div class="card" id="${element.content.replace(' ', '-')}-container">
                             <div class="card-header">
-                                <h3 class="card-title"><a href="#"><a href="#"><button class="btn btn-warning btn-lg">${element.subject}</button></a></a></h3>
+                                <h3 class="card-title">
+                                    <a href="#"><button class="btn btn-warning btn-lg">${element.subject}</button></a>
+                                    <button class="btn btn-danger btn-lg right-align" onclick="deleteQuestion(${element.content.replace(' ', '-')})"><i class="material-icons">close</i></button>
+                                </h3>
                                 <p class="category">
                                     Tags: ${tags}
                                     <br>
                                     Asked By: ${element.author} | At: ${element.post_time.replace('T', ' ').replace('Z', '')} | Rating: ${element.upvotes}
                                 </p>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" id="${element.content.replace(' ', '-')}">
                                 ${element.content}
                             </div>
                         </div></div>
@@ -106,6 +109,22 @@
                     });
                     document.getElementById('question-cards').innerHTML = cards;
                 });
+            }
+            function deleteQuestion(idStr)
+            {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "https://sentral2database--dragonfan.repl.co", false);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(String.raw
+                `
+                {
+                    "type": "delete",
+                    "data": "${document.getElementById(idStr).innerHTML.trim()}"
+                }
+                `);
+                console.log(xhr.responseText);
+
+                document.getElementById(element.content.replace(' ', '-') + "-container").innerHTML = "";
             }
         </script>
     </head>
