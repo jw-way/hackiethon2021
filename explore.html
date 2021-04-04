@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="static/mainstyle.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <script>
+        <script type="text/javascript">
             class tag
             {
                 static tags = [];
@@ -63,82 +63,86 @@
             }
             function searchForQuestions()
             {
-                var xmlHttp = new XMLHttpRequest();
-                let tagConcat = tag.tags.join(';');
-                console.log(tagConcat === "");
-                if (tagConcat === "")
-                {
-                    //xmlHttp.open("GET", "http://8c22ba59c936.ngrok.io/api/v1/questions/?type=org");
+                var xmlhttp;
+                if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
                 }
-                else
-                {
-                    //xmlHttp.open("GET", `http://8c22ba59c936.ngrok.io/api/v1/questions/?type=org&tag=${tagConcat}`);
+                else { // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                 }
-                /*xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-                xmlHttp.send();
-                console.log(xmlHttp.responseText);*/
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        let parsedData = JSON.parse(xmlhttp.responseText);
+                        console.log(parsedData);
 
-                let testReturn = `[{"author":null,"date_time":"2021-04-03T10:00:00Z","id":1,"question_screenshot_id":null,"question_text":"Describe a scenario where Dijkstra's algorithm would be most suited for.","rating":10,"tags_list":"AL;12;Shortest-path algorithms","view_count":0},{"author":null,"date_time":"2021-04-03T10:00:00Z","id":2,"question_screenshot_id":null,"question_text":"How do roller coasters keep their passengers in their seat when they are upside-down on the loop?","rating":3,"tags_list":"PH;12;Circular motion","view_count":0},{"author":null,"date_time":"2021-04-04T10:00:00Z","id":8,"question_screenshot_id":"Test question 3","question_text":"Test question 3","rating":0,"tags_list":null,"view_count":0},{"author":"David Kong","date_time":"2021-04-04T10:00:00Z","id":9,"question_screenshot_id":null,"question_text":"How do I access the API in JS?","rating":0,"tags_list":null,"view_count":0}]`;
+                        if (questionSort.type === 'new')
+                        {
+                            parsedData.sort((a, b) => {
+                                if (Date.parse(a) === Date.parse(b))
+                                    return 0;
+                                else if (Date.parse(a) > Date.parse(b))
+                                    return 1;
+                                else return -1;
+                            });
+                        }
+                        else if (questionSort.type === 'popular')
+                        {
+                            parsedData.sort((a, b) => {
+                                if (a.rating === b.rating)
+                                    return 0;
+                                else if (a.rating > b.rating)
+                                    return -1;
+                                else return 1;
+                            });
+                        }
 
-                let parsedData = JSON.parse(testReturn);
-                console.log(parsedData);
+                        let e = document.getElementById('search-input');
 
-                if (questionSort.type === 'new')
-                {
-                    parsedData.sort((a, b) => {
-                        if (Date.parse(a) === Date.parse(b))
-                            return 0;
-                        else if (Date.parse(a) > Date.parse(b))
-                            return 1;
-                        else return -1;
-                    });
-                }
-                else if (questionSort.type === 'popular')
-                {
-                    parsedData.sort((a, b) => {
-                        if (a.rating === b.rating)
-                            return 0;
-                        else if (a.rating > b.rating)
-                            return -1;
-                        else return 1;
-                    });
-                }
-                var cards = '';
-                parsedData.forEach(element => {
-                    var tags = ''
-                    if (element.tags_list !== null)
-                    {
-                        element.tags_list.split(';').forEach(item => {
-                            tags += `<a href="#"><button class="btn btn-info btn-sm">${item}</button></a>`
+                        console.log(e.value);
+                        parsedData = parsedData.filter(item => {
+                            return item.text_content.toLowerCase().includes(e.value.toLowerCase()) && tag.tags.every(i => item.tags_list.split(';').includes(i.toLowerCase()));
                         });
-                    }
+                        parsedData = parsedData.slice(0, 10);
 
-                    cards += String.raw
-                    `
-                    <div class="question-card"><div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title"><a href="#">${element.question_text}</a></h3>
-                            <p class="category">
-                                <p></p>
-                                Subject:
-                                <a href="#"><button class="btn btn-warning btn-sm">TODO: Implement this.</button></a>
-                                <br>Tags:
-                                ${tags}
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            Asked By: ${element.author} | At: ${element.date_time.replace('T', ' ').replace('Z', '')} | Rating: ${element.rating}
-                        </div>
-                    </div></div>
-                    `;
-                });
-                document.getElementById('question-cards').innerHTML = cards;
+                        var cards = '';
+                        parsedData.forEach(element => {
+                            var tags = ''
+                            if (element.tags_list !== null)
+                            {
+                                element.tags_list.split(';').forEach(item => {
+                                    if (item !== "")
+                                        tags += `<a href="#"><button class="btn btn-info btn-sm">${item}</button></a>`
+                                });
+                            }
+
+                            cards += String.raw
+                            `
+                            <div class="question-card"><div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"><a href="#"><a href="#"><button class="btn btn-warning btn-sm">TODO: Implement This.</button></a></a></h3>
+                                    <p class="category">
+                                        Tags: ${tags}
+                                        <br>
+                                        Asked By: ${element.author} | At: ${element.date_time.replace('T', ' ').replace('Z', '')} | Rating: ${element.rating}
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    ${element.text_content}
+                                </div>
+                            </div></div>
+                            `;
+                        });
+                        document.getElementById('question-cards').innerHTML = cards;
+                    }
+                }
+                xmlhttp.open("GET", "https://8c22ba59c936.ngrok.io/api/v1/questions/?type=org", true);
+                xmlhttp.send();
             }
         </script>
     </head>
 
-
     <body onload="searchForQuestions()">
+
         <div class="sidebar">
             <div class="logo"><img src="static/logo.png"></div>
             <hr>
@@ -172,10 +176,14 @@
 
             <div id="tags-html">
             </div>
+            
+            <br><br>
 
             <button class="btn btn-secondary" onclick="questionSort.type = 'new'; searchForQuestions();">New</button>
             <button class="btn btn-secondary" onclick="questionSort.type = 'popular'; searchForQuestions();">Most Popular</button>
             
+            <br><br>
+
             <div class="cards"><div class="row" id="question-cards">
                 
             </div></div>
