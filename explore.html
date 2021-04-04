@@ -176,11 +176,12 @@
                 <script>
                 
                 function getTag(){
-                    retun (document.location.search.replace(/^.*?\=/,''))
+                    return (document.location.search.replace(/^.*?\=/,''))
                 }
 
                 if (getTag()){
-                    addTag(document.location.search.replace(/^.*?\=/,''));
+                    let tagStr = getTag()
+                    addTag(tagStr.replace("%20"," "));
                     updateTags();
                     searchForQuestions();
                 }
