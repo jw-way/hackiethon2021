@@ -17,6 +17,22 @@
         <link rel="stylesheet" href="static/mainstyle.css">
         
         <script>
+            class tag
+            {
+                static tags = [];
+                static htmlBegin = String.raw
+                `
+                <button class="btn btn-warning btn-sm" onclick="
+                `;
+                static htmlCenter = String.raw
+                `
+                ">
+                `;
+                static htmlEnd = String.raw
+                `
+                &nbsp<i class="material-icons">close</i></button>
+                `;
+            }
             function loadSubjects()
             {
                 let query = document.getElementById('search-input').value.toLowerCase();
@@ -73,27 +89,61 @@
                     ImageName.innerHTML = DummyButton.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]; 
                 }
                 else{
-                    ImageName.innerHTML = "No Image selected"; 
+                    ImageName.innerHTML = "<h6>No Image Selected</h6>"; 
                 }
             });
             }
             
+            function addTag(tagStr)
+            {
+                if (!tag.tags.includes(tagStr))
+                {
+                    tag.tags.push(tagStr);
+                    updateTags();
+                }
+            }
+            function removeTag(tagStr)
+            {
+                tag.tags = tag.tags.filter(item => item !== tagStr);
+                updateTags();
+            }
+            function updateTags()
+            {
+                let e = document.getElementById('tags-html');
+                e.innerHTML = '';
+                tag.tags.forEach(item => {
+                    e.innerHTML += tag.htmlBegin + `removeTag(\'${item}\')` + tag.htmlCenter + item + tag.htmlEnd; 
+                });
+            }
+
             function loadPostSection()
             {
                 let postSection = document.getElementById('post-html');
                 postSection.innerHTML = String.raw
                 `
-                
-
                 <button class="btn btn-danger right-align" onclick="unloadPostSection()"><i class="material-icons">close</i></button>
-                <input class="fit post-title-box" id="post-title-input" type="text" placeholder="Title..." name="post-title">
+                <br><br><br>
+                <form class="wide-transition">
+                    <input id="post-author-input" type="text" placeholder="Name..." name="author-name">
+                </form>
                 <p></p>
                 <textarea class="fit post-body-box" id="post-body-input" type="text/img" placeholder="Text..." name="post-body" rows="15"></textarea>
                 
-                <button class="btn btn-info" id="UploadButton" onclick="ImageUpload()""><i class="material-icons">image</i> Add Image</button>
-                <input type="file" id="DummyButton" hidden="hidden"/>
-                <span id="customName"> No file selected </span>
-                <button class="btn btn-primary right-align" onclick="postPost()"><i class="material-icons">add</i> Post</button>
+                <h6>
+                    <button class="btn btn-primary" onclick="let t = document.getElementById('tag-input').value; if (t !== '') addTag(t)"><i class="material-icons">add</i> Add Tag</button>
+                    <input style="padding: 4px;", id="tag-input", type="text" placeholder="Tag..." name="tag">
+
+                    <button class="btn btn-info" id="UploadButton" onclick="ImageUpload()""><i class="material-icons">image</i> Add Image</button>
+                    <input type="file" id="DummyButton" hidden="hidden"/>
+                    <span id="customName"> No file selected </span>
+
+                    <button class="btn btn-success right-align" onclick="postPost()"><i class="material-icons">add</i> Post</button>
+
+                    <br>
+
+                    <div id="tags-html">
+                    </div>
+                </h6>
                 `
             }
             function unloadPostSection()
@@ -107,6 +157,17 @@
             }
             function postPost()
             {
+                var fd = new FormData();
+                fd.append("author", document.getElementById('post-author-input').value);
+                fd.append("text_content", document.getElementById('post-body-input').value);
+                fd.append("date_time", new Date(Date.now()).toISOString());
+                fd.append("tags_list", tag.tags.join(';'))
+
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("POST", "https://8c22ba59c936.ngrok.io/api/v1/questions/?type=org", false);
+                xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "http://sentral2.ddns.net");
+                xmlhttp.send(fd);
+
                 let postSection = document.getElementById('post-html');
                 postSection.innerHTML = String.raw
                 `
@@ -268,7 +329,7 @@
             <div class="all-subjects">
                 <h2>All Subjects</h2>
 
-                <form class="search-box" onkeyup="return loadSubjects()">
+                <form class="wide-transition" onkeyup="return loadSubjects()">
                     <input id="search-input" type="text" placeholder="Filter..." name="search">
                 </form>
                 <p></p>
