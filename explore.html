@@ -73,7 +73,6 @@
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         let parsedData = JSON.parse(xmlhttp.responseText);
-                        console.log(parsedData);
 
                         if (questionSort.type === 'new')
                         {
@@ -135,7 +134,7 @@
                         document.getElementById('question-cards').innerHTML = cards;
                     }
                 }
-                xmlhttp.open("GET", "https://8c22ba59c936.ngrok.io/api/v1/questions/?type=org", true);
+                xmlhttp.open("GET", "https://8c22ba59c936.ngrok.io/api/v1/questions/?type=org", false);
                 xmlhttp.send();
             }
         </script>
@@ -159,7 +158,7 @@
             <hr>
             <br>
 
-            <form class="search-box" onsubmit="searchForQuestions()">
+            <form class="wide-transition" onsubmit="searchForQuestions()">
                 <input id="search-input" type="text" placeholder="Search..." name="search">
             </form>
 
