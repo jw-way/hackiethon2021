@@ -76,7 +76,8 @@
                     });
                     parsedData = parsedData.slice(0, 10);
 
-                    var cards = '';
+                    let b = document.getElementById('question-cards');
+                    b.innerHTML = '';
                     parsedData.forEach(element => {
                         var tags = ''
                         if (element.tags !== null)
@@ -87,7 +88,7 @@
                             });
                         }
 
-                        cards +=
+                        b.innerHTML +=
                         `
                         <div class="question-card"><div class="card">
                             <div class="card-header">
@@ -107,7 +108,6 @@
                         </div></div>
                         `;
                     });
-                    document.getElementById('question-cards').innerHTML = cards;
                 });
             }
             function deleteQuestion(contentStr)
@@ -157,9 +157,9 @@
             <hr>
             <br>
 
-            <form class="wide-transition" action="#" onsubmit="searchForQuestions()">
+            <div class="wide-transition">
                 <input id="search-input" type="text" placeholder="Search..." name="search">
-            </form>
+            </div>
 
             <form onsubmit="let t = document.getElementById('tag-input').value; if (t !== '') addTag(t); return false;">
                 <button class="btn btn-primary">
@@ -200,9 +200,30 @@
             
             <br><br>
 
-            <div class="cards"><div class="row" id="question-cards">
-                
-            </div></div>
+            <div class="cards">
+                <div class="question-card"><div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <a href="actualquestion.html"><button class="btn btn-warning btn-lg">Mathematical Methods Units 3/4 (This One Works, Click Me!)</button></a>
+                            <button class="btn btn-danger btn-lg right-align"><i class="material-icons">close</i></button>
+                        </h3>
+                        <p class="category">
+                            Tags:
+                            <a href="#"><button class="btn btn-info btn-sm">Mathematics</button></a>
+                            <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                            <br>
+                            Asked By: Dragon Fan | At: 2021-04-04 20:42:43.643 | Rating: 69
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        For a right triangle with side lengths 1 and i, would the hypotenuse have a length of 0?
+                    </div>
+                </div>
+                    
+                <div class="row" id="question-cards">
+                </div>
+
+            </div>
 
         </div>
 
