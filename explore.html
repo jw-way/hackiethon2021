@@ -70,6 +70,7 @@
                     xmlHttp.open("GET", `http://questbase.sytes.net/api/v1/questions?type=org&tag=${tagConcat}`, false);
                 }
                 xmlHttp.send(null);
+                console.log(xmlHttp.responseText);
             }
         </script>
     </head>
