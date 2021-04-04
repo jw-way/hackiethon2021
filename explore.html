@@ -63,14 +63,6 @@
             }
             function searchForQuestions()
             {
-                fetch("https://kahootist.github.io/hackiethon2021/database.json", {
-                    method: "POST",
-                    body: "weed",
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    }
-                });
-
                 var xmlhttp;
                 if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
                     xmlhttp = new XMLHttpRequest();
@@ -108,32 +100,34 @@
 
                         console.log(e.value);
                         parsedData = parsedData.filter(item => {
-                            return item.question_text.toLowerCase().includes(e.value.toLowerCase()) && tag.tags.every(i => item.tags.includes(i.toLowerCase()));
+                            return item.text_content.toLowerCase().includes(e.value.toLowerCase()) && tag.tags.every(i => item.tags_list.split(';').includes(i.toLowerCase()));
                         });
                         parsedData = parsedData.slice(0, 10);
 
                         var cards = '';
                         parsedData.forEach(element => {
                             var tags = ''
-                            element.tags.forEach(item => {
-                                tags += `<a href="#"><button class="btn btn-info btn-sm">${item}</button></a>`
-                            });
+                            if (element.tags_list !== null)
+                            {
+                                element.tags_list.split(';').forEach(item => {
+                                    if (item !== "")
+                                        tags += `<a href="#"><button class="btn btn-info btn-sm">${item}</button></a>`
+                                });
+                            }
 
                             cards += String.raw
                             `
                             <div class="question-card"><div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title"><a href="#">${element.question_text}</a></h3>
+                                    <h3 class="card-title"><a href="#"><a href="#"><button class="btn btn-warning btn-sm">TODO: Implement This.</button></a></a></h3>
                                     <p class="category">
-                                        <p></p>
-                                        Subject:
-                                        <a href="#"><button class="btn btn-warning btn-sm">TODO: Implement this.</button></a>
-                                        <br>Tags:
-                                        ${tags}
+                                        Tags: ${tags}
+                                        <br>
+                                        Asked By: ${element.author} | At: ${element.date_time.replace('T', ' ').replace('Z', '')} | Rating: ${element.rating}
                                     </p>
                                 </div>
                                 <div class="card-body">
-                                    Asked By: ${element.author} | At: ${element.date_time.replace('T', ' ').replace('Z', '')} | Rating: ${element.rating}
+                                    ${element.text_content}
                                 </div>
                             </div></div>
                             `;
@@ -141,12 +135,11 @@
                         document.getElementById('question-cards').innerHTML = cards;
                     }
                 }
-                xmlhttp.open("GET", "database.json", true);
+                xmlhttp.open("GET", "https://8c22ba59c936.ngrok.io/api/v1/questions/?type=org", true);
                 xmlhttp.send();
             }
         </script>
     </head>
-
 
     <body onload="searchForQuestions()">
 
