@@ -17,6 +17,62 @@
         <!-- <link rel="icon" href="static/tabicon"> -->
         <link rel="stylesheet" href="static/mainstyle.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+            class tag
+            {
+                static tags = [];
+                static htmlBegin = String.raw
+                `
+                <button class="btn btn-warning btn-sm" onclick="
+                `;
+                static htmlCenter = String.raw
+                `
+                ">
+                `;
+                static htmlEnd = String.raw
+                `
+                &nbsp<i class="material-icons">close</i></button>
+                `;
+            }
+            function addTag(tagStr)
+            {
+                if (!tag.tags.includes(tagStr))
+                {
+                    tag.tags.push(tagStr);
+                    updateTags();
+                }
+            }
+            function removeTag(tagStr)
+            {
+                tag.tags = tag.tags.filter(item => item !== tagStr);
+                updateTags();
+            }
+            function updateTags()
+            {
+                let e = document.getElementById('tags-html');
+                e.innerHTML = '';
+                tag.tags.forEach(item => {
+                    e.innerHTML += tag.htmlBegin + `removeTag(\'${item}\')` + tag.htmlCenter + item + tag.htmlEnd; 
+                });
+            }
+            function searchForQuestions()
+            {
+                var xmlHttp = new XMLHttpRequest();
+                let tagConcat = tag.tags.join(';');
+                console.log(tagConcat === "");
+                if (tagConcat === "")
+                {
+                    xmlHttp.open("GET", `http://questbase.sytes.net/api/v1/questions?type=org`, false);
+                }
+                else
+                {
+                    xmlHttp.open("GET", `http://questbase.sytes.net/api/v1/questions?type=org&tag=${tagConcat}`, false);
+                }
+                xmlHttp.send(null);
+                console.log(xmlHttp.responseText);
+            }
+        </script>
     </head>
 
 
@@ -34,12 +90,23 @@
             <h1>Sentral 2 - Explore</h1>
             <br>
 
-            <form class="search-box" onkeyup="return loadSubjects()">
+            <form class="search-box" onsubmit="searchForQuestions()">
                 <input id="search-input" type="text" placeholder="Search..." name="search">
-                <br><br>
-                <button class="btn btn-primary"><i class="material-icons">add</i> Add Tag</button>
-                <button type="submit" class="btn btn-success btn-lg right-align"><i class="fa fa-search"></i></button>
             </form>
+
+            <form onsubmit="let t = document.getElementById('tag-input').value; if (t !== '') addTag(t); return false;">
+                <button class="btn btn-primary">
+                    <i class="material-icons">add</i> 
+                    &nbspAdd Tag&nbsp&nbsp
+                </button>
+                <input style="padding: 4px;", id="tag-input", type="text" placeholder="Tag..." name="tag">
+                <button class="btn btn-success right-align" onclick="searchForQuestions()">
+                    <i class="material-icons">search</i>
+                </button>
+            </form>
+
+            <div id="tags-html">
+            </div>
 
             <div class="new">
 
