@@ -70,7 +70,6 @@
                         newHTML += str + '\n';
                     }
                 });
-                console.log(baseHTML);
                 e.innerHTML = newHTML;
             }
             
@@ -155,18 +154,39 @@
                 <button class="btn btn-primary" onclick="loadPostSection()"><i class="material-icons">add</i> New Post</button>
                 `
             }
-            function postPost()
+            async function postPost()
             {
-                var fd = new FormData();
-                fd.append("author", document.getElementById('post-author-input').value);
-                fd.append("text_content", document.getElementById('post-body-input').value);
-                fd.append("date_time", new Date(Date.now()).toISOString());
-                fd.append("tags_list", tag.tags.join(';'))
-
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.open("POST", "https://8c22ba59c936.ngrok.io/api/v1/questions/?type=org", false);
-                xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "http://sentral2.ddns.net");
-                xmlhttp.send(fd);
+                console.log(String.raw
+                `
+                `);
+                const response = await fetch("https://8c22ba59c936.ngrok.io/api/v1/questions/", {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    cache: 'no-cache',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    redirect: 'follow',
+                    referrerPolicy: 'no-referrer',
+                    body: String.raw
+                    `
+                    {
+                        "type": "que",
+                        "date_time": "2021-04-04T10:00:00Z",
+                        "text_content": "test q 3",
+                        "media_id": "test qweq 3",
+                        "original_question_id": 1
+                    }
+                    `
+                    /*"author": "${document.getElementById('post-author-input').value}",
+                        "media_id": "this is a stupid undocumented required field, even with text_content",
+                        "text_content": "${document.getElementById('post-body-input').value}",
+                        "date_time": "${new Date(Date.now()).toISOString()}",
+                        "tags_list": "${tag.tags.join(';')}"
+                    */
+                });
+                console.log(response.json());
 
                 let postSection = document.getElementById('post-html');
                 postSection.innerHTML = String.raw
@@ -180,7 +200,7 @@
     </head>
 
     
-    <body onload="loadSubjects(); unloadPostSection()">
+    <body onload="loadSubjects(); unloadPostSection(); tag.tags = []">
         
         <div class="sidebar">
             <div class="logo"><img src="static/logo.png"></div>
