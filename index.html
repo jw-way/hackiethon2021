@@ -34,14 +34,6 @@
                 &nbsp<i class="material-icons">close</i></button>
                 `;
             }
-
-            function createQString(elementID,topicName){
-                let button = document.getElementById(elementID);
-                button.addEventListener("click", function(){
-                window.document.location = "explore.html" + "?SubjectTag=" + topicName;
-                });
-            } 
-
             function loadSubjects()
             {
                 let query = document.getElementById('search-input').value.toLowerCase();
@@ -49,49 +41,95 @@
                 let baseHTML = String.raw
                 `
                 <h4>Year 9</h4>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 English</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Mathematics</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Science</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 History</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Geography</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Language</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Digital Technology</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Art</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 9 Music</button></a>
+<<<<<<< HEAD
+                <a href='explore.html'><button class='btn btn-success btn-lg' id = "bt1">Year 9 English</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 9 Mathematics</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 9 Science</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 9 History</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 9 Geography</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 9 Language</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 9 Digital Technology</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 9 Art</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 9 Music</button></a>
                 <br>
                 <h4>Year 10</h4>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 English</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Mathematics</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Science</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 History</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Geography</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Language</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Digital Technology</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Art</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Year 10 Music</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 10 English</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 10 Mathematics</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 10 Science</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 10 History</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 10 Geography</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 10 Language</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 10 Digital Technology</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 10 Art</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Year 10 Music</button></a>
                 <br>
                 <h4>Year 11</h4>
-                <a href='#'><button class='btn btn-success btn-lg'>English Units 1/2</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>English Language Units 1/2</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Literature Units 1/2</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Mathematical Methods Units 1/2</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Specialist Mathematics Units 1/2</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Biology Units 1/2</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Chemistry Units 1/2</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Physics Units 1/2</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Computing Units 1/2</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>English Units 1/2</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>English Language Units 1/2</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Literature Units 1/2</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Mathematical Methods Units 1/2</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Specialist Mathematics Units 1/2</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Biology Units 1/2</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Chemistry Units 1/2</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Physics Units 1/2</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Computing Units 1/2</button></a>
                 <br>
                 <h4>Year 12</h4>
-                <a href='#'><button class='btn btn-success btn-lg'>English Units 3/4</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>English Language Units 3/4</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Literature Units 3/4</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Mathematical Methods Units 3/4</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Specialist Mathematics Units 3/4</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Biology Units 3/4</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Chemistry Units 3/4</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Physics Units 3/4</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Software Development Units 3/4</button></a>
-                <a href='#'><button class='btn btn-success btn-lg'>Algorithmics Units 3/4</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>English Units 3/4</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>English Language Units 3/4</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Literature Units 3/4</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Mathematical Methods Units 3/4</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Specialist Mathematics Units 3/4</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Biology Units 3/4</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Chemistry Units 3/4</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Physics Units 3/4</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Software Development Units 3/4</button></a>
+                <a href='explore.html'><button class='btn btn-success btn-lg'>Algorithmics Units 3/4</button></a>
+=======
+                <a href='#'><button class='btn btn-primary btn-round'>Year 9 English</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 9 Mathematics</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 9 Science</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 9 History</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 9 Geography</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 9 Language</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 9 Digital Technology</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 9 Art</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 9 Music</button></a>
+                <br>
+                <h4>Year 10</h4>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 10 English</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 10 Mathematics</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 10 Science</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 10 History</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 10 Geography</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 10 Language</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 10 Digital Technology</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 10 Art</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Year 10 Music</button></a>
+                <br>
+                <h4>Year 11</h4>
+                <a href='#'><button class='btn btn-primary btn-round'>English Units 1/2</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>English Language Units 1/2</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Literature Units 1/2</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Mathematical Methods Units 1/2</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Specialist Mathematics Units 1/2</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Biology Units 1/2</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Chemistry Units 1/2</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Physics Units 1/2</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Computing Units 1/2</button></a>
+                <br>
+                <h4>Year 12</h4>
+                <a href='#'><button class='btn btn-primary btn-round'>English Units 3/4</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>English Language Units 3/4</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Literature Units 3/4</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Mathematical Methods Units 3/4</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Specialist Mathematics Units 3/4</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Biology Units 3/4</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Chemistry Units 3/4</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Physics Units 3/4</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Software Development Units 3/4</button></a>
+                <a href='#'><button class='btn btn-primary btn-round'>Algorithmics Units 3/4</button></a>
+>>>>>>> fcbb7569e42ffd430c25235790888bb1988a2a0e
                 `
                 let e = document.getElementById('subjects-html');
                 if (baseHTML === '')
@@ -206,14 +244,18 @@
                     body: String.raw
                     `
                     {
-                        "type": "org",
-                        "author": "${document.getElementById('post-author-input').value}",
+                        "type": "que",
+                        "date_time": "2021-04-04T10:00:00Z",
+                        "text_content": "test q 3",
+                        "media_id": "test qweq 3",
+                        "original_question_id": 1
+                    }
+                    `
+                    /*"author": "${document.getElementById('post-author-input').value}",
+                        "media_id": "this is a stupid undocumented required field, even with text_content",
                         "text_content": "${document.getElementById('post-body-input').value}",
                         "date_time": "${new Date(Date.now()).toISOString()}",
                         "tags_list": "${tag.tags.join(';')}"
-                    }
-                    `
-                    /*
                     */
                 });
                 console.log(response.json());
@@ -227,7 +269,12 @@
                 `
             }
 
-
+            function createQString(elementID,topicName){
+                let button = document.getElementById(elementID);
+                button.addEventListener("click", function(){
+                window.document.location = "explore.html" + "?SubjectTag=" + topicName;
+                });
+            } 
                                             
         </script>
     </head>
@@ -247,13 +294,8 @@
         <div class="content">
 
             <h1><b>Central</b></h1>
-            <div class="post">
-                <div id="post-html"></div>
-            </div>
             <hr>
             <br>
-
-
             
             <div class="my-subjects">
 
@@ -261,112 +303,115 @@
 
                 <div class="cards"><div class="row"> 
 
-                    <div class="col-sm-3">
-                        <div class="card subject-card">
-                            <div class="card-header card-header-icon card-header-rose">
-                              <div class="card-icon">
-                                <i class="material-icons">book</i>
-                              </div>
-                            </div>
-                            <div class="card-body">
-                                <h1 class="card-title">English</h1>
-                                <br>
-                                    <p class="category">
-                                        Tags:
-                                        <a href="#"><button class="btn btn-info btn-sm">ENGLISH</button></a>
-                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                                    </p>
-                                    <script> 
-                                    let AlgoB = document.getElementById("AlgoB")
-                                    //var tag = "algorithmics"
-                                    AlgoB.addEventListener("click", function(){
-                                    window.document.location = "explore.html" + "?SubjectTag=" + "algorithmics";
-                                    });
+                    <div class="subject-card">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"><a><button class="btn btn-warning btn-lg fit" id="EngLanB">
+                                    <h3>English Language</h3>
+                                </button></a></h4>
+                                <p class="category">
+                                    Tags:
+                                    <a href="#"><button class="btn btn-info btn-sm">English</button></a>
+                                    <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                </p>
+                                <script> 
+                                   createQString("EngLanB","english language")
+                                
+                                   /*let EngLanB = document.getElementById("EngLanB")
+                                    //var tag = "mathematical met   hods"
+                                    EngLanB.addEventListener("click", function(){
+                                    window.document.location = "explore.html" + "?SubjectTag=" + "english langauge";
+                                    });*/
                                     </script>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
-                        <div class="card subject-card">
-                            <div class="card-header card-header-icon card-header-rose">
-                              <div class="card-icon">
-                                <i class="material-icons">pin</i>
-                              </div>
-                            </div>
-                            <div class="card-body">
-                                <h1 class="card-title">Maths</h1>
-                                <br>
-                                    <p class="category">
-                                        Tags:
-                                        <a href="#"><button class="btn btn-info btn-sm">MATHEMATICS</button></a>
-                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                                    </p>
-                                    <script> 
-                                    let AlgoB = document.getElementById("AlgoB")
-                                    //var tag = "algorithmics"
-                                    AlgoB.addEventListener("click", function(){
-                                    window.document.location = "explore.html" + "?SubjectTag=" + "algorithmics";
-                                    });
+                    <div class="subject-card">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"><a><button class="btn btn-warning btn-lg fit" id="MethB">
+                                    <h3>Mathematical Methods</h3>
+                                </button></a></h4>
+                                <p class="category">
+                                    Tags:
+                                    <a href="#"><button class="btn btn-info btn-sm">Mathematics</button></a>
+                                    <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                </p>
+                                <script> 
+
+                                createQString("MethB","mathematical methods")
+
                                     </script>
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="subject-card">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"><a><button class="btn btn-warning btn-lg fit" id="SpeshB">
+                                    <h3>Specialist Mathematics</h3>
+                                </button></a></h4>
+                                <p class="category">
+                                    Tags:
+                                    <a href="#"><button class="btn btn-info btn-sm">Mathematics</button></a>
+                                    <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                </p>
+                                <script> 
 
-                    <div class="col-sm-3">
-                        <div class="card subject-card">
-                            <div class="card-header card-header-icon card-header-rose">
-                              <div class="card-icon">
-                                <i class="material-icons">computer</i>
-                              </div>
-                            </div>
-                            <div class="card-body">
-                                <h1 class="card-title">Algorithmics</h1>
-                                <br>
-                                    <p class="category">
-                                        Tags:
-                                        <a href="#"><button class="btn btn-info btn-sm">Computer Science</button></a>
-                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                                    </p>
-                                    <script> 
-                                    let AlgoB = document.getElementById("AlgoB")
-                                    //var tag = "algorithmics"
-                                    AlgoB.addEventListener("click", function(){
-                                    window.document.location = "explore.html" + "?SubjectTag=" + "algorithmics";
-                                    });
+                                    createQString("SpeshB","specialist mathematics")
+
                                     </script>
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="subject-card">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"><a><button class="btn btn-warning btn-lg fit fit" id="PhysB">
+                                    <h3>Physics</h3>
+                                </button></a></h4>
+                                <p class="category">
+                                    Tags:
+                                    <a href="#"><button class="btn btn-info btn-sm">Science</button></a>
+                                    <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                </p>
+                                <script> 
 
-                    <div class="col-sm-3">
-                        <div class="card subject-card">
-                            <div class="card-header card-header-icon card-header-rose">
-                              <div class="card-icon">
-                                <i class="material-icons">science</i>
-                              </div>
-                            </div>
-                            <div class="card-body">
-                                <h1 class="card-title">Physics</h1>
-                                <br>
-                                    <p class="category">
-                                        Tags:
-                                        <a href="#"><button class="btn btn-info btn-sm">SCIENCE</button></a>
-                                        <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                                    </p>
-                                    <script> 
-                                    let AlgoB = document.getElementById("AlgoB")
-                                    //var tag = "algorithmics"
-                                    AlgoB.addEventListener("click", function(){
-                                    window.document.location = "explore.html" + "?SubjectTag=" + "algorithmics";
-                                    });
+                                    createQString("PhysB","physics")
+
                                     </script>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"><a><button class="btn btn-warning btn-lg fit" id="AlgoB">
+                                    <h3>Algorithmics</h3>
+                                </button></a></h4>
+                                <p class="category">
+                                    Tags:
+                                    <a href="#"><button class="btn btn-info btn-sm">Computer Science</button></a>
+                                    <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
+                                </p>
+                                <script> 
+
+                                    createQString("AlgoB","algorithmics")
+
+                                </script>
+                                
                             </div>
                         </div>
                     </div>
                 </div></div>
                 
-
+            <div class="post">
+                <div id="post-html"></div>
+            </div>
 
 
 
