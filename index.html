@@ -150,6 +150,7 @@
                 <br><br><br>
                 <form class="wide-transition">
                     <input id="post-author-input" type="text" placeholder="Name..." name="author-name">
+                    <input id="post-subject-input" type="text" placeholder="Subject..." name="author-name">
                 </form>
                 <p></p>
                 <textarea class="fit post-body-box" id="post-body-input" type="text/img" placeholder="Text..." name="post-body" rows="15"></textarea>
@@ -182,34 +183,30 @@
             }
             async function postPost()
             {
-                console.log(String.raw
-                `
-                `);
-                const response = await fetch("https://8c22ba59c936.ngrok.io/api/v1/questions/", {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    cache: 'no-cache',
-                    credentials: 'same-origin',
-                    headers: {
-                        'Access-Control-Allow-Origin': '*'
-                    },
-                    redirect: 'follow',
-                    referrerPolicy: 'no-referrer',
-                    body: String.raw
-                    `
-                    {
-                        "type": "org",
-                        "author": "${document.getElementById('post-author-input').value}",
-                        "text_content": "${document.getElementById('post-body-input').value}",
-                        "date_time": "${new Date(Date.now()).toISOString()}",
-                        "tags_list": "${tag.tags.join(';')}"
-                    }
-                    `
-                    /*
-                    */
+                var tagsString = "[ ";
+                tag.tags.forEach(item => {
+                    tagsString += `\"${item}\", `;
                 });
-                console.log(response.json());
+                tagsString = tagsString.substr(0, tagsString.length - 2);
+                tagsString += " ]";
 
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "https://sentral2database--dragonfan.repl.co", false);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(String.raw
+                `
+                {
+                    "author": "${document.getElementById('post-author-input').value}",
+                    "subject": "${document.getElementById('post-subject-input').value}",
+                    "tags": ${tagsString},
+                    "content": "${document.getElementById('post-body-input').value}",
+                    "post_time": "${new Date(Date.now()).toISOString()}",
+                    "upvotes": 0
+                }
+                `);
+                console.log(xhr.responseText);
+
+                tag.tags = [];
                 let postSection = document.getElementById('post-html');
                 postSection.innerHTML = String.raw
                 `
