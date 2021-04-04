@@ -1,3 +1,2 @@
 # hackiethon2021
-
-weed
+This is a prototype for an upcoming school manager software, Central.
