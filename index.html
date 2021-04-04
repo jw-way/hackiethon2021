@@ -233,7 +233,7 @@
     </head>
 
     
-    <body onload="loadSubjects(); unloadPostSection(); tag.tags = []">
+    <body onload="loadSubjects(); unloadPostSection(); tag.tags = [];">
         
         <div class="sidebar">
             <div class="logo"><img src="static/logo.png"></div>
@@ -390,9 +390,9 @@
             <div class="all-subjects">
                 <h2>All Subjects</h2>
 
-                <form class="wide-transition" onkeyup="return loadSubjects()">
-                    <input id="search-input" type="text" placeholder="Filter..." name="search">
-                </form>
+                <div class="wide-transition">
+                    <input onkeyup="return loadSubjects()" id="search-input" type="text" placeholder="Filter..." name="search">
+                </div>
                 <p></p>
 
                 <div id="subjects-html">

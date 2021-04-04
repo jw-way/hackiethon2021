@@ -87,13 +87,13 @@
                             });
                         }
 
-                        cards += String.raw
+                        cards +=
                         `
-                        <div class="question-card"><div class="card" id="${element.content.replace(' ', '-')}-container">
+                        <div class="question-card"><div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">
                                     <a href="#"><button class="btn btn-warning btn-lg">${element.subject}</button></a>
-                                    <button class="btn btn-danger btn-lg right-align" onclick="deleteQuestion(${element.content.replace(' ', '-')})"><i class="material-icons">close</i></button>
+                                    <button class="btn btn-danger btn-lg right-align" onclick="deleteQuestion(\`${element.content}\`)"><i class="material-icons">close</i></button>
                                 </h3>
                                 <p class="category">
                                     Tags: ${tags}
@@ -101,7 +101,7 @@
                                     Asked By: ${element.author} | At: ${element.post_time.replace('T', ' ').replace('Z', '')} | Rating: ${element.upvotes}
                                 </p>
                             </div>
-                            <div class="card-body" id="${element.content.replace(' ', '-')}">
+                            <div class="card-body">
                                 ${element.content}
                             </div>
                         </div></div>
@@ -110,7 +110,7 @@
                     document.getElementById('question-cards').innerHTML = cards;
                 });
             }
-            function deleteQuestion(idStr)
+            function deleteQuestion(contentStr)
             {
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "https://sentral2database--dragonfan.repl.co", false);
@@ -119,12 +119,23 @@
                 `
                 {
                     "type": "delete",
-                    "data": "${document.getElementById(idStr).innerHTML.trim()}"
+                    "data": "${contentStr}"
                 }
                 `);
                 console.log(xhr.responseText);
 
-                document.getElementById(element.content.replace(' ', '-') + "-container").innerHTML = "";
+                xhr = new XMLHttpRequest();
+                xhr.open("POST", "https://sentral2database--dragonfan.repl.co", false);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(String.raw
+                `
+                {
+                    "type": "none"
+                }
+                `);
+                console.log(xhr.responseText);
+
+                searchForQuestions();
             }
         </script>
     </head>
@@ -146,11 +157,8 @@
             <hr>
             <br>
 
-            <form class="wide-transition" onsubmit="searchForQuestions()">
+            <form class="wide-transition" action="#" onsubmit="searchForQuestions()">
                 <input id="search-input" type="text" placeholder="Search..." name="search">
-                <button class="btn btn-success" id="id-search" onclick="searchForQuestions()">
-                    <i class="material-icons">search</i>
-                </button>            
             </form>
 
             <form onsubmit="let t = document.getElementById('tag-input').value; if (t !== '') addTag(t); return false;">
@@ -160,6 +168,10 @@
                 </button>
                 
                 <input style="padding: 4px;", id="tag-input", type="text" placeholder="Tag..." name="tag">
+                
+                <button class="btn btn-success" id="id-search" onclick="searchForQuestions()">
+                    <i class="material-icons">search</i>
+                </button>
                    
                 <script>
                 
