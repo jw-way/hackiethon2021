@@ -57,28 +57,42 @@
                 console.log(baseHTML);
                 e.innerHTML = newHTML;
             }
+            
+            function ImageUpload(){
 
-            /*
-            function loadImage(){
-                let image = document.createElement("input");
-                image.setAttribute("type","image");
-                
-                
+            var DummyButton = document.getElementById("DummyButton");
+            var UploadButton = document.getElementById("UploadButton");
+            var ImageName = document.getElementById("customName");
+            
+            
+            UploadButton.addEventListener("click",function(){
+                DummyButton.click();
+            });
+            DummyButton.addEventListener("change",function(){
+                if(DummyButton.value){
+                    ImageName.innerHTML = DummyButton.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]; 
+                }
+                else{
+                    ImageName.innerHTML = "No Image selected"; 
+                }
+            });
             }
-            Cant seem to be able to get the imageload() function to work :( 
-            */ 
-
+            
             function loadPostSection()
             {
                 let postSection = document.getElementById('post-html');
                 postSection.innerHTML = String.raw
                 `
+                
+
                 <button class="btn btn-danger right-align" onclick="unloadPostSection()"><i class="material-icons">close</i></button>
                 <input class="fit post-title-box" id="post-title-input" type="text" placeholder="Title..." name="post-title">
                 <p></p>
-                <textarea class="fit post-body-box" id="post-body-input" type="text" placeholder="Text..." name="post-body" rows="15"></textarea>
+                <textarea class="fit post-body-box" id="post-body-input" type="text/img" placeholder="Text..." name="post-body" rows="15"></textarea>
                 
-                <button class="btn btn-info" onclick="loadImage()"><i class="material-icons">image</i> Add Image</button>
+                <button class="btn btn-info" id="UploadButton" onclick="ImageUpload()""><i class="material-icons">image</i> Add Image</button>
+                <input type="file" id="DummyButton" hidden="hidden"/>
+                <span id="customName"> No file selected </span>
                 <button class="btn btn-primary right-align" onclick="postPost()"><i class="material-icons">add</i> Post</button>
                 `
             }
@@ -86,6 +100,7 @@
             {
                 let postSection = document.getElementById('post-html');
                 postSection.innerHTML = String.raw
+                
                 `
                 <button class="btn btn-primary" onclick="loadPostSection()"><i class="material-icons">add</i> New Post</button>
                 `
@@ -103,7 +118,7 @@
         </script>
     </head>
 
-
+    
     <body onload="loadSubjects(); unloadPostSection()">
         <div class="sidebar">
             <div class="logo"><img src="static/logo.png"></div>
@@ -120,7 +135,7 @@
             <h1><b>Central</b></h1>
             <hr>
             <br>
-
+            
             <div class="my-subjects">
 
                 <h2>My Subjects</h2>
