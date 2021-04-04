@@ -162,6 +162,9 @@
 
             <form class="wide-transition" onsubmit="searchForQuestions()">
                 <input id="search-input" type="text" placeholder="Search..." name="search">
+                <button class="btn btn-success" id="id-search" onclick="searchForQuestions()">
+                    <i class="material-icons">search</i>
+                </button>            
             </form>
 
             <form onsubmit="let t = document.getElementById('tag-input').value; if (t !== '') addTag(t); return false;">
@@ -169,10 +172,9 @@
                     <i class="material-icons">add</i> 
                     &nbspAdd Tag&nbsp&nbsp
                 </button>
+                
                 <input style="padding: 4px;", id="tag-input", type="text" placeholder="Tag..." name="tag">
-                <button class="btn btn-success right-align" id="id-search" onclick="searchForQuestions()">
-                    <i class="material-icons">search</i>
-                </button>               
+                   
                 <script>
                 
                 function getTag(){
