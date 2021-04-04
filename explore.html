@@ -68,14 +68,15 @@
                 console.log(tagConcat === "");
                 if (tagConcat === "")
                 {
-                    xmlHttp.open("GET", "https://8c22ba59c936.ngrok.io/api/v1/questions?type=org");
+                    //xmlHttp.open("GET", "http://8c22ba59c936.ngrok.io/api/v1/questions/?type=org");
                 }
                 else
                 {
-                    xmlHttp.open("GET", `https://8c22ba59c936.ngrok.io/api/v1/questions?type=org&tag=${tagConcat}`);
+                    //xmlHttp.open("GET", `http://8c22ba59c936.ngrok.io/api/v1/questions/?type=org&tag=${tagConcat}`);
                 }
+                /*xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
                 xmlHttp.send();
-                console.log(xmlHttp.responseText);
+                console.log(xmlHttp.responseText);*/
 
                 let testReturn = `[{"author":null,"date_time":"2021-04-03T10:00:00Z","id":1,"question_screenshot_id":null,"question_text":"Describe a scenario where Dijkstra's algorithm would be most suited for.","rating":10,"tags_list":"AL;12;Shortest-path algorithms","view_count":0},{"author":null,"date_time":"2021-04-03T10:00:00Z","id":2,"question_screenshot_id":null,"question_text":"How do roller coasters keep their passengers in their seat when they are upside-down on the loop?","rating":3,"tags_list":"PH;12;Circular motion","view_count":0},{"author":null,"date_time":"2021-04-04T10:00:00Z","id":8,"question_screenshot_id":"Test question 3","question_text":"Test question 3","rating":0,"tags_list":null,"view_count":0},{"author":"David Kong","date_time":"2021-04-04T10:00:00Z","id":9,"question_screenshot_id":null,"question_text":"How do I access the API in JS?","rating":0,"tags_list":null,"view_count":0}]`;
 
@@ -88,13 +89,40 @@
                         if (Date.parse(a) === Date.parse(b))
                             return 0;
                         else if (Date.parse(a) > Date.parse(b))
-                            return -1;
-                        else return 1;
+                            return 1;
+                        else return -1;
                     });
                 }
+                var cards = '';
                 parsedData.forEach(element => {
+                    var tags = ''
+                    if (element.tags_list !== null)
+                    {
+                        element.tags_list.split(';').forEach(item => {
+                            tags += `<a href="#"><button class="btn btn-info btn-sm">${item}</button></a>`
+                        });
+                    }
 
+                    cards += String.raw
+                    `
+                    <div class="question-card"><div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"><a href="#">${element.question_text}</a></h3>
+                            <p class="category">
+                                <p></p>
+                                Subject:
+                                <a href="#"><button class="btn btn-warning btn-sm">TODO: Implement this.</button></a>
+                                <br>Tags:
+                                ${tags}
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            Asked By: ${element.author} | At: ${element.date_time.replace('T', ' ').replace('Z', '')} | Rating: ${element.rating}
+                        </div>
+                    </div></div>
+                    `;
                 });
+                document.getElementById('question-cards').innerHTML = cards;
             }
         </script>
     </head>
@@ -134,62 +162,11 @@
             <div id="tags-html">
             </div>
 
-            <button class="btn btn-secondary">New</button>
+            <button class="btn btn-secondary" onclick="searchForQuestions()">New</button>
             <button class="btn btn-secondary">Trending</button>
             <button class="btn btn-secondary">Most Popular</button>
             
-            <div class="cards"><div class="row">
-
-                <div class="question-card"><div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><a href="#">Insert question here.</a></h3>
-                        <p class="category">
-                            <p></p>
-                            Subject:
-                            <a href="#"><button class="btn btn-warning btn-sm">English Language 3/4</button></a>
-                            <br>Tags:
-                            <a href="#"><button class="btn btn-info btn-sm">English</button></a>
-                            <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        Preview of question here fillertext whatever...
-                    </div>
-                </div></div>
-
-                <div class="question-card"><div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><a href="#">Insert question here.</a></h3>
-                        <p class="category">
-                            <p></p>
-                            Subject:
-                            <a href="#"><button class="btn btn-warning btn-sm">English Language 3/4</button></a>
-                            <br>Tags:
-                            <a href="#"><button class="btn btn-info btn-sm">English</button></a>
-                            <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        Preview of question here fillertext whatever...
-                    </div>
-                </div></div>
-
-                <div class="question-card"><div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><a href="#">Insert question here.</a></h3>
-                        <p class="category">
-                            <p></p>
-                            Subject:
-                            <a href="#"><button class="btn btn-warning btn-sm">English Language 3/4</button></a>
-                            <br>Tags:
-                            <a href="#"><button class="btn btn-info btn-sm">English</button></a>
-                            <a href="#"><button class="btn btn-info btn-sm">Units 3/4</button></a>
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        Preview of question here fillertext whatever...
-                    </div>
-                </div></div>
+            <div class="cards"><div class="row" id="question-cards">
                 
             </div></div>
 
